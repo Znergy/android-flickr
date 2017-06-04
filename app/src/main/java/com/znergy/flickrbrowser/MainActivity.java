@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
         return super.onOptionsItemSelected(item);
     }
 
+    // Override is simply just a way of checking that the method we write
+    // conforms to the interface we're implementing (ex: wrong spelling, @Override = helpful error)
+    @Override
     public void onDownloadComplete(String data, DownloadStatus status) {
         if(status == DownloadStatus.OK) {
             Log.d(TAG, "onDownloadComplete: status is okay. Data is " + data);
