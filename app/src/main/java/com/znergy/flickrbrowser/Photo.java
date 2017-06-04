@@ -21,27 +21,39 @@ public class Photo {
         this.image = image;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public String getAuthor() {
+    String getAuthor() {
         return author;
     }
 
-    public String getAuthorId() {
+    String getAuthorId() {
         return authorId;
     }
 
-    public String getLink() {
+    String getLink() {
         return link;
     }
 
-    public String getTags() {
+    String getTags() {
         return tags;
     }
 
-    public String getImage() {
+    String getImage() {
         return image;
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", link='" + link + '\'' +
+                ", tags='" + tags + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 }
