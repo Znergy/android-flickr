@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Call the GetRawData class, passing in the desired URL (which will trigger the download)
-        GetRawData getRawData = new GetRawData();
+        GetRawData getRawData = new GetRawData(this);
         getRawData.execute("https://api.flickr.com/services/feeds/photos_public.gne?tags=android&tagmode=any&format=json&nojsoncallback=1");
 
 
@@ -47,5 +47,14 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d(TAG, "onOptionsItemSelected() returned: returned");
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDownloadComplete(String data, DownloadStatus status) {
+        if(status == DownloadStatus.OK) {
+            Log.d(TAG, "onDownloadComplete: status is okay. Data is " + data);
+        } else {
+            // download or processing failed
+            Log.e(TAG, "onDownloadComplete: status is not okay. Failed with status " + status);
+        }
     }
 }
