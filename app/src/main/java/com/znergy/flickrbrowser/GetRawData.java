@@ -73,10 +73,20 @@ class GetRawData extends AsyncTask<String, Void, String> {
 
             // this block will loop through the data until there is no data left
             // reader.readLine() is reading the line and adding it to our result
+            /***** Original Reading of Input Stream *****/
             String line;
             while(null != (line = reader.readLine())) {
                 result.append(line).append("\n");
             }
+
+            // this will also work, and is used a lot. It has a better scope for the line variable
+            // Since we don't have to define 'String line' outside our loop like the original
+            /***** Alternative Reading of Input Stream *****/
+            /*
+            for(String line = reader.readLine(); line != null; line = reader.readLine()) {
+                result.append(line).append("\n");
+            }
+            */
 
             // finally after reading the input stream and appending it to our result
             // we return the result as a string
