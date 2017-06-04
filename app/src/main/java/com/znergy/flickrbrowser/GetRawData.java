@@ -12,14 +12,18 @@ import java.net.URL;
 
 enum DownloadStatus { IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK};
 
-
+/***** For Notes please view the GetRawDataWithNotes class *****/
 class GetRawData extends AsyncTask<String, Void, String> {
     private static final String TAG = "GetRawData";
 
     private DownloadStatus downloadStatus;
-    private MainActivity callback;
+    private OnDownloadComplete callback;
 
-    public GetRawData(MainActivity callback) {
+    interface OnDownloadComplete {
+        void onDownloadComplete(String data, DownloadStatus status);
+    }
+
+    public GetRawData(OnDownloadComplete callback) {
         this.downloadStatus = DownloadStatus.IDLE;
         this.callback = callback;
     }

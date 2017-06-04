@@ -22,10 +22,17 @@ class GetRawDataWithNotes extends AsyncTask<String, Void, String> {
 
     // we need to link our MainActivity so we can call the onDownloadComplete method
     // this is commonly called callback, but really it's just an instance of MainActivity
-    private MainActivity callback;
+    private onDownloadComplete callback;
 
-    // empty constructor to set the default state of our AsyncTask (as idle)
-    public GetRawDataWithNotes(MainActivity callback) {
+    // we implement an interface for the onDownloadComplete method to ensure
+    // that the method will be called in our GetRawData class
+    interface onDownloadComplete {
+        void onDownloadComplete(String data, DownloadStatus status);
+    }
+
+    // constructor sets the default status of our AsyncTask (as idle)
+    // implement an interface which is now what is being referred to as callback
+    public GetRawDataWithNotes(onDownloadComplete callback) {
         this.downloadStatus = DownloadStatus.IDLE;
         this.callback = callback;
     }
