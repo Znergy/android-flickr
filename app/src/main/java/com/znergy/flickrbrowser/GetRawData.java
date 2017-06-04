@@ -13,9 +13,6 @@ import java.net.URL;
 // enum will contain all the states that the class will have
 enum DownloadStatus { IDLE, PROCESSING, NOT_INITIALISED, FAILED_OR_EMPTY, OK};
 
-/**
- * Created by administrator on 6/4/17.
- */
 
 class GetRawData extends AsyncTask<String, Void, String> {
     private static final String TAG = "GetRawData";
@@ -33,7 +30,9 @@ class GetRawData extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+        // this doesn't do anything (super.onPostExecute is an empty method)
+        // super.onPostExecute(s);
+        Log.d(TAG, "onPostExecute: parameter = " + s);
     }
 
     @Override

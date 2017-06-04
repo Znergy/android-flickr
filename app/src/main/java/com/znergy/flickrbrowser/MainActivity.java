@@ -17,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
+        // Call the GetRawData class, passing in the desired URL (which will trigger the download)
+        GetRawData getRawData = new GetRawData();
+        getRawData.execute("https://api.flickr.com/services/feeds/photos_public.gne?tags=android&tagmode=any&format=json&nojsoncallback=1");
+
+
         Log.d(TAG, "onCreate: ended");
     }
 
