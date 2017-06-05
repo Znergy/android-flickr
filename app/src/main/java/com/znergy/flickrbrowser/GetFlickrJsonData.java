@@ -40,17 +40,17 @@ class GetFlickrJsonData extends AsyncTask<String, Void, List<Photo>> implements 
         this.matchAll = matchAll;
     }
 
-    void executeOnSameThread(String searchCriteria) {
-        Log.d(TAG, "executeOnSameThread: started");
-        runningOnSameThread = true;
-        // creating a url with these parameters
-        String destinationUri = createUri(searchCriteria, language, matchAll);
-
-        GetRawData getRawData = new GetRawData(this);
-        getRawData.execute(destinationUri);
-
-        Log.d(TAG, "executeOnSameThread: ended");
-    }
+//    void executeOnSameThread(String searchCriteria) {
+//        Log.d(TAG, "executeOnSameThread: started");
+//        runningOnSameThread = true;
+//        // creating a url with these parameters
+//        String destinationUri = createUri(searchCriteria, language, matchAll);
+//
+//        GetRawData getRawData = new GetRawData(this);
+//        getRawData.execute(destinationUri);
+//
+//        Log.d(TAG, "executeOnSameThread: ended");
+//    }
 
     @Override
     protected void onPostExecute(List<Photo> photos) {
