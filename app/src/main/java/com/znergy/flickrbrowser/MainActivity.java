@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements GetRawData.OnDownloadComplete {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements GetFlickrJsonData.OnDataAvailable {
     private static final String TAG = "MainActivity";
 
     @Override
@@ -17,10 +19,6 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // Call the GetRawData class, passing in the desired URL (which will trigger the download)
-        GetRawData getRawData = new GetRawData(this);
-        getRawData.execute("https://api.flickr.com/services/feeds/photos_public.gne?tags=android&tagmode=any&format=json&nojsoncallback=1");
 
 
         Log.d(TAG, "onCreate: ended");
@@ -49,15 +47,9 @@ public class MainActivity extends AppCompatActivity implements GetRawData.OnDown
         return super.onOptionsItemSelected(item);
     }
 
-    // Override is simply just a way of checking that the method we write
-    // conforms to the interface we're implementing (ex: wrong spelling, @Override = helpful error)
     @Override
-    public void onDownloadComplete(String data, DownloadStatus status) {
-        if(status == DownloadStatus.OK) {
-            Log.d(TAG, "onDownloadComplete: status is okay. Data is " + data);
-        } else {
-            // download or processing failed
-            Log.e(TAG, "onDownloadComplete: status is not okay. Failed with status " + status);
-        }
+    public void onDataAvailable(List<Photo> data, DownloadStatus status) {
+        Log.d(TAG, "onDataAvailable: started");
+
     }
 }
