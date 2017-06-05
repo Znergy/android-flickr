@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
          * values to format an API URL, which the executeOnSameThread() method uses to pass to
          * GetRawData and then the actual API request takes place! */
         GetFlickrJsonData getFlickrJsonData = new GetFlickrJsonData(this, "https://api.flickr.com/services/feeds/photos_public.gne", "en-us", true);
-        getFlickrJsonData.executeOnSameThread("android, nougat");
-
+//        getFlickrJsonData.executeOnSameThread("android, nougat");
+        getFlickrJsonData.execute("android,nougat");
         Log.d(TAG, "onResume: ended");
     }
 
