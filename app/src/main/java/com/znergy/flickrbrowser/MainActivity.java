@@ -20,8 +20,21 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         Log.d(TAG, "onCreate: ended");
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume: started");
+        super.onResume();
+
+        /** GetFlickrJsonData has a method called 'createUri' this method uses the constructor
+         * values to format an API URL, which the executeOnSameThread() method uses to pass to
+         * GetRawData and then the actual API request takes place! */
+        GetFlickrJsonData getFlickrJsonData = new GetFlickrJsonData(this, "https://api.flickr.com/services/feeds/photos_public.gne", "en-us", true);
+        getFlickrJsonData.executeOnSameThread("android, nougat");
+
+        Log.d(TAG, "onResume: ended");
     }
 
     @Override
@@ -49,7 +62,11 @@ public class MainActivity extends AppCompatActivity implements GetFlickrJsonData
 
     @Override
     public void onDataAvailable(List<Photo> data, DownloadStatus status) {
-        Log.d(TAG, "onDataAvailable: started");
+        if(status == DownloadStatus.OK) {
+            Log.d(TAG, "onDataAvailable: data is " + data);
+        } else {
+            Log.e(TAG, "onDataAvailable: failed with status " + status);
+        }
 
     }
 }
