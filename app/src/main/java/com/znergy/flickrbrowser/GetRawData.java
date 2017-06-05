@@ -28,9 +28,24 @@ class GetRawData extends AsyncTask<String, Void, String> {
         this.callback = callback;
     }
 
+    void runInSameThread(String s) {
+        Log.d(TAG, "runInSameThread: starts");
+//        onPostExecute(doInBackground(s));
+
+        // this calls doInBackground passing in our API URL
+        // then does a callback to GetFlickrJsonData using the returned json data from doInBackground
+        if(callback != null) {
+//            String result = doInBackground(s);
+//            callback.onDownloadComplete(result, downloadStatus);
+            callback.onDownloadComplete(doInBackground(s), downloadStatus); // shortcut code
+        }
+
+        Log.d(TAG, "runInSameThread: ends");
+    }
+
     @Override
     protected void onPostExecute(String s) {
-        Log.d(TAG, "onPostExecute: parameter = " + s);
+//        Log.d(TAG, "onPostExecute: parameter = " + s);
 
         if(callback != null) {
             callback.onDownloadComplete(s, downloadStatus);
